@@ -1,5 +1,7 @@
 # Whisper Speech Transcriber
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) ![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+
 Convert spoken audio into text using OpenAI's Whisper model.
 
 ## Features
