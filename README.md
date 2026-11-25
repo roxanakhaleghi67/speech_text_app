@@ -1,11 +1,38 @@
 # Whisper Speech Transcriber
 
-Turns spoken audio into text with OpenAI's Whisper speech-recognition model.
+Convert spoken audio into text using OpenAI's Whisper model.
 
-## What it does
+## Features
 
-`speech_text_app.py` defines `Transcriber`, which loads the Whisper `base` model and
-transcribes an audio file.
+- Transcribes an audio file to plain text
+- Uses the Whisper `base` model by default
+- Handles common audio formats supported by Whisper (for example, `.mp3`, `.wav`)
+- Minimal, class-based API (`Transcriber`)
+
+## Requirements
+
+- Python 3.8 or newer
+- `openai-whisper`
+- PyTorch (`torch`) as the backend
+- `ffmpeg` installed and available on your system `PATH` (required by Whisper to decode audio)
+
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+Make sure `ffmpeg` is installed separately, for example:
+
+```bash
+# Debian/Ubuntu
+sudo apt-get install ffmpeg
+
+# macOS (Homebrew)
+brew install ffmpeg
+```
+
+## Usage
 
 ```python
 from speech_text_app import Transcriber
@@ -14,28 +41,21 @@ transcriber = Transcriber()
 print(transcriber.transcribe("voice.mp3"))
 ```
 
-## Requirements
+The first call downloads the Whisper `base` model, so it may take a moment.
 
-- Python 3.9+
-- `openai-whisper` (see `requirements.txt`)
-- `ffmpeg` on the `PATH` — required by Whisper for audio decoding
+## Project Structure
 
-```bash
-python -m pip install -r requirements.txt
+```text
+speech_text_app/
+├── speech_text_app.py   # Transcriber implementation
+├── requirements.txt
+└── README.md
 ```
-
-The model weights (about 150 MB for `base`) download on first use.
-
-## Notes and limitations
-
-- Whisper `base` favours speed over accuracy; use `small` or `medium` for noisy recordings.
-- The whole file is transcribed in one pass, so very long audio is memory hungry.
-- No speaker diarisation and no timestamps are returned by this wrapper.
-
-## Status
-
-Single-module prototype. Planned work: a command-line entry point and timestamped output.
 
 ## License
 
-No license file is present yet. Until one is added, the default copyright applies.
+This project is released under the **MIT License**.
+
+## Author
+
+**Roxana Khaleghi**
